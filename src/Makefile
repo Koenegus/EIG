@@ -1,6 +1,7 @@
-override CFLAGS += -I../include -I/usr/include/openblas
+override CFLAGS += -I../include -I/usr/local/include
 #LDLIBS += -lgsl -lopenblas -lrt -lm
 override LDLIBS += -lgsl -lopenblas -lm -lpthread
+override LDFLAGS += -L/usr/local/lib
 # Some Linux distributions require separate lapacke library
 # override LDLIBS += -llapacke
 # Mac additions using homebrew installations
@@ -31,10 +32,9 @@ NLIB = $(ND)/libnick.a
 # ----- phony targets
 .PHONY: all clean clobber install
 
-EXE = baseprog convertf mergeit pca nickhash merge_transpose \
-	multimerge geno_single transpose \
-	$(ED)/pcatoy $(ED)/smartrel $(ED)/smarteigenstrat \
-	$(ED)/twstats $(ED)/eigenstrat $(ED)/eigenstratQTL $(ED)/smartpca
+EXE = baseprog pca \
+    $(ED)/pcatoy $(ED)/smartrel $(ED)/smarteigenstrat \
+    $(ED)/twstats $(ED)/eigenstrat $(ED)/eigenstratQTL $(ED)/smartpca
 
 all:    $(EXE)
 
